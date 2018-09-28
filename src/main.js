@@ -21,7 +21,7 @@ new Vue({
   created () {
     // Initialize Firebase
     var config = {
-      apiKey: 'AIzaSyBuKGpAFljLXuKc5__xH_qWDjoCMWnvbM',
+      apiKey: 'AIzaSyBuKGpAFljLXuKc5__xH_qWDjoCMWnvbM0',
       authDomain: 'onlinestore-11409.firebaseapp.com',
       databaseURL: 'https://onlinestore-11409.firebaseio.com',
       projectId: 'onlinestore-11409',
