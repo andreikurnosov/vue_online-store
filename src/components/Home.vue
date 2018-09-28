@@ -33,6 +33,7 @@
         <v-img
           :src="product.imageSrc"
           aspect-ratio="2.75"
+          height="300px"
         ></v-img>
       </router-link>
         <v-card>
