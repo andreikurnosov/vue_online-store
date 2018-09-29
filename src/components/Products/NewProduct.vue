@@ -72,7 +72,8 @@
             <v-flex xs12>
               <v-spacer></v-spacer>
               <v-btn
-                :disabled="!valid"
+                :loading="loading"
+                :disabled="!valid || loading"
                 @click="createProduct"
                 class="success"
               >Create Product</v-btn>
@@ -99,6 +100,11 @@ export default {
       valid: false
     }
   },
+  computed: {
+    loading () {
+      return this.$store.getters.loading
+    }
+  },
   methods: {
     createProduct () {
       if (this.$refs.form.validate()) {
@@ -109,9 +115,14 @@ export default {
           material: this.material,
           price: this.price,
           description: this.description,
-          promo: this.promo
+          promo: this.promo,
+          imageSrc: 'http://lorempixel.com/640/480/cats'
         }
-        console.log(product)
+        this.$store.dispatch('createProduct', product)
+        .then(() => {
+          this.$router.push('/list')
+        })
+        .catch(() => {})
       }
     }
   }
