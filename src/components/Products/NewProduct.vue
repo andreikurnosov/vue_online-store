@@ -48,15 +48,22 @@
           </v-form>
           <v-layout class="mb-3">
             <v-flex xs12>
-              <v-btn class="warning">
+              <v-btn class="warning" @click="upload">
                 Upload
                 <v-icon right dark>cloud_upload</v-icon>
               </v-btn>
+              <input
+                ref="fileInput"
+                type="file"
+                style="display: none;"
+                accept="image/*"
+                @change="onFileChange"
+              >
             </v-flex>
           </v-layout>
           <v-layout>
             <v-flex xs12>
-              <img src="" height="200px">
+              <img :src="imageSrc" height="200px" v-if="imageSrc">
             </v-flex>
           </v-layout>
           <v-layout>
@@ -73,7 +80,7 @@
               <v-spacer></v-spacer>
               <v-btn
                 :loading="loading"
-                :disabled="!valid || loading"
+                :disabled="!valid || !image || loading"
                 @click="createProduct"
                 class="success"
               >Create Product</v-btn>
@@ -97,7 +104,9 @@ export default {
       price: 0,
       description: '',
       promo: false,
-      valid: false
+      valid: false,
+      image: null,
+      imageSrc: ''
     }
   },
   computed: {
@@ -107,7 +116,7 @@ export default {
   },
   methods: {
     createProduct () {
-      if (this.$refs.form.validate()) {
+      if (this.$refs.form.validate() && this.image) {
         const product = {
           title: this.title,
           vendor: this.vendor,
@@ -116,14 +125,27 @@ export default {
           price: this.price,
           description: this.description,
           promo: this.promo,
-          imageSrc: 'http://lorempixel.com/640/480/cats'
+          image: this.image
         }
-        this.$store.dispatch('createProduct', product)
-        .then(() => {
-          this.$router.push('/list')
-        })
-        .catch(() => {})
+        this.$store
+          .dispatch('createProduct', product)
+          .then(() => {
+            this.$router.push('/list')
+          })
+          .catch(() => {})
       }
+    },
+    upload () {
+      this.$refs.fileInput.click()
+    },
+    onFileChange (event) {
+      const file = event.target.files[0]
+      const reader = new FileReader()
+      reader.onload = e => {
+        this.imageSrc = reader.result
+      }
+      reader.readAsDataURL(file)
+      this.image = file
     }
   }
 }
