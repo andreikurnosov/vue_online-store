@@ -39,7 +39,7 @@
         <v-card>
           <v-card-title primary-title>
             <div>
-              <h3 class="card_heading heading">{{ product.title }}</h3>
+              <h3 class="card_heading heading">{{ product.title }} JUST KIDDING</h3>
               <div class="card_describe">
                 <p class="subheading">{{ product.description.substring(0, 60) }}... </p>
                 <p class="subheading card_price"><span class="title">Price: </span>${{ product.price }}</p>
