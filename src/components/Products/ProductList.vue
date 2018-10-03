@@ -2,14 +2,14 @@
  <v-container>
    <v-layout row v-if="!loading && myProducts.length !== 0">
      <v-flex xs12 sm6 offset-sm3>
-       <h1 class="text--secondary mb3">My Products</h1>
+       <h1 class="text--secondary mb-3">My Products</h1>
        <v-card
         class="elevation-10 mb-2"
         v-for="(product, i) in myProducts"
         :key="i"
 
         >
-         <v-layout>
+         <v-layout row>
            <v-flex xs4>
              <v-card-media
               :src="product.imageSrc"
@@ -38,7 +38,7 @@
    </v-layout>
    <v-layout v-else-if="!loading && myProducts.length === 0">
      <v-flex xs12 class="text-xs-center">
-       <h1 class="text-primary">You have no products</h1>
+       <h1 class="text--primary">You have no products</h1>
      </v-flex>
    </v-layout>
    <v-layout v-else>
