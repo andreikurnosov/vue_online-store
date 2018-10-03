@@ -29,12 +29,12 @@
              <p class="product_title mb-2">Description: </p>{{ product.description }}
            </div>
            <app-edit-product :product="product" v-if="isOwner"></app-edit-product>
-           <v-btn color="primary" class="headline">Buy</v-btn>
+           <app-buy-dialog :product="product"></app-buy-dialog>
          </div>
        </v-flex>
      </v-layout>
    </section>
-   <section v-else class="text-xs-center">   
+   <section v-else class="text-xs-center">
     <v-progress-circular
       :size="100"
       :width="4"

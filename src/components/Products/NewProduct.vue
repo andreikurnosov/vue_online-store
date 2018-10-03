@@ -38,13 +38,12 @@
               type="text"
               v-model="price"
             ></v-text-field>
-            <v-text-field
+            <v-textarea
               name="description"
               label="Description Product"
               type="text"
-              multi-line
               v-model="description"
-            ></v-text-field>
+            ></v-textarea>
           </v-form>
           <v-layout class="mb-3">
             <v-flex xs12>
@@ -55,7 +54,7 @@
               <input
                 ref="fileInput"
                 type="file"
-                style="display: none;"
+                style="display: none"
                 accept="image/*"
                 @change="onFileChange"
               >
